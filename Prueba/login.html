@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style1.css">
+    
+    <script>
+        // Verifica si ya hay una sesión iniciada al cargar la página
+        window.onload = function () {
+            if (localStorage.getItem("sesionIniciada") === "true") {
+                window.location.href = "index.html"; // Redirige al home si ya está logueado
+            }
+        };
+
+        function validarLogin() {
+            const usuario = document.getElementById("usuario").value;
+            const contrasena = document.getElementById("contrasena").value;
+
+            if (usuario === "admin" && contrasena === "1234") {
+                localStorage.setItem("sesionIniciada", "true"); // Guardar sesión
+                window.location.href = "index.html"; // Redirigir a la página principal
+            } else {
+                alert("Usuario o contraseña incorrectos");
+            }
+        }
+    </script>
+
+    <script>
+        // Bloquea el botón de "atrás" del navegador
+        history.pushState(null, null, window.location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <div class="input-container">
+            <i class="fas fa-user"></i>
+            <input type="text" id="usuario" placeholder="Usuario" required>
+        </div>
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="contrasena" placeholder="Contraseña" required>
+        </div>
+        <button onclick="validarLogin()">Ingresar</button>
+    </div>
+</body>
+</html>

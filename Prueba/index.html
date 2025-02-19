@@ -225,12 +225,31 @@
         visibility: visible;
         opacity: 1;
     }
+    .logout-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #ff4c4c;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
     </style>
 </head>
 <body>
  
     <script>
+
+        function cerrarSesion() {
+        localStorage.removeItem("sesionIniciada");
+        window.location.href = "login.html"; // Redirigir al login
+        }
         
         document.addEventListener("DOMContentLoaded", function () {
         const sidebarButtons = document.querySelectorAll(".circle");
@@ -345,6 +364,10 @@
                 Ver calendario
             </button>
         </div>
+
+       <!-- Botón de Cerrar Sesión -->
+        <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
+
     </div>
  
 </body>

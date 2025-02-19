@@ -1,0 +1,69 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1d6256, #0f3d3e);
+    font-family: 'Poppins', sans-serif;;
+}
+.login-container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 320px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.login-container h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+.input-container input {
+    width: 75%;
+    padding: 12px 15px 12px 40px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.input-container input:focus {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+.input-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+}
+.login-container button {
+    background-color: #22463c;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+.login-container button:hover {
+    background-color: #0056b3;
+}
