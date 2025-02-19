@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Calendario de Tareas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: rgba(255, 169, 137, 0.88);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            flex-direction: column;
+            background-image: url("../img/folderc.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            
+        }
+
+        .calendar-header h2 {
+            font-size: 24px;
+        }
+
+        .calendar-header button {
+            font-size: 50px;
+            background: none;  /* Elimina el fondo */
+            border: none;  /* Elimina el borde */
+            padding: 0;  /* Elimina el espacio interno */
+            cursor: pointer; /* Mantiene el cursor de botón */
+            color: #fff;
+        }
+        .calendar-header  .b1{
+         position: relative;
+         right: -15%;
+        }
+        .calendar-header  .b2{
+         position: relative;
+         right: 15%;
+        }
+
+    
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            background-color: rgba(255, 213, 198, 0.81);
+            padding: 10px;
+            position: relative;
+            right: 0px;
+            bottom: 10px;
+        }
+
+        .weekday {
+            padding: 10px;
+            margin-left: 41.5px;
+
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            max-width: 700px;
+            width: 100%;
+            grid-auto-rows: 51px;
+        }
+
+        .calendar-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background: #fff;
+            background-color: rgba(255, 213, 198, 0.81);
+            border-radius: 0px;
+            padding: 10px;
+        
+        }
+
+        .calendar-day span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .task-list {
+            margin-top: 5px;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .task {
+            font-size: 14px;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .contenedor{
+
+            position: relative;
+            bottom: -31px;
+            background: rgba(255, 213, 198, 0.81);
+            border-radius: 55px;
+        }
+
+        .cal {
+            position: absolute;
+            width: 81px;
+            height: 79px;
+            background: rgba(255, 195, 173, 1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            left: 100px;
+            top: 306px;
+        }
+
+        .cal img{
+            height: 54px;
+        }
+         
+
+        .login {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 66%;
+            bottom: 88%;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .login img {
+    
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .back-button {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #F8F6E3;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            left: 20px;
+            top: 20px;
+        }
+
+        .sharki img{
+        height: 70px;
+        position: absolute;
+        right: 87%;
+        bottom: 81%;
+        transform: scaleX(-1);
+        }
+      
+
+    </style>
+</head>
+<body>
+    
+    <div class="back-button">←</div>
+    <div class="cal">
+        <img src="../img/callogo.png" alt="">
+    </div>
+
+    <div class="login">
+        <img src="https://i.imgur.com/6VBx3io.png" alt="User">
+        Noe's project
+    </div>
+   
+    
+
+    <div class="contenedor">
+        <div class="sharki">
+            <img src="../img/sharki.png"alt="">
+        </div>
+        <div class="calendar-header">
+            <button id="prevMonth" class="b1">←</button>
+            <h2 id="month-year"></h2>
+            <button id="nextMonth" class="b2">→</button>
+        </div>
+       
+    
+        <div class="weekdays">
+            <div class="weekday">Dom</div>
+            <div class="weekday">Lun</div>
+            <div class="weekday">Mar</div>
+            <div class="weekday">Mié</div>
+            <div class="weekday">Jue</div>
+            <div class="weekday">Vie</div>
+            <div class="weekday">Sáb</div>
+        </div>
+    
+        <div class="calendar-container" id="calendar"></div>
+
+    </div>
+ 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".back-button").addEventListener("click", function () {
+                window.location.href = "../index.html";
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+        let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+        let calendarContainer = document.getElementById("calendar");
+        let monthYear = document.getElementById("month-year");
+
+        let today = new Date();
+        let currentMonth = today.getMonth();
+        let currentYear = today.getFullYear();
+
+        // Crear modal para mostrar detalles de tareas
+        let modal = document.createElement("div");
+        modal.id = "taskModal";
+        modal.style.display = "none";
+        modal.style.position = "fixed";
+        modal.style.top = "50%";
+        modal.style.left = "50%";
+        modal.style.transform = "translate(-50%, -50%)";
+        modal.style.backgroundColor = "white";
+        modal.style.padding = "20px";
+        modal.style.border = "2px solid black";
+        modal.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.5)";
+        modal.style.zIndex = "1000";
+
+        let closeButton = document.createElement("button");
+        closeButton.innerText = "Cerrar";
+        closeButton.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        let modalContent = document.createElement("div");
+        modal.appendChild(modalContent);
+        modal.appendChild(closeButton);
+        document.body.appendChild(modal);
+
+        function showTasks(tasksForDay, taskDate) {
+            modalContent.innerHTML = `<h3>Tareas para el ${taskDate}</h3>`;
+            tasksForDay.forEach(task => {
+                let taskDetail = document.createElement("p");
+                taskDetail.innerText = `📌 ${task.nombre} - ${task.descripcion}`;
+                modalContent.appendChild(taskDetail);
+            });
+            modal.style.display = "block";
+        }
+
+        function renderCalendar() {
+            let firstDay = new Date(currentYear, currentMonth, 1);
+            let firstDayOfWeek = firstDay.getDay();
+            let lastDay = new Date(currentYear, currentMonth + 1, 0);
+            let daysInMonth = lastDay.getDate();
+
+            const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            monthYear.innerText = `${months[currentMonth]} ${currentYear}`;
+
+            calendarContainer.innerHTML = "";
+            
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                let emptyDay = document.createElement("div");
+                calendarContainer.appendChild(emptyDay);
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                let dayElement = document.createElement("div");
+                dayElement.classList.add("calendar-day");
+                
+                let dayNumber = document.createElement("span");
+                dayNumber.innerText = i;
+                dayElement.appendChild(dayNumber);
+                
+                let formattedDate = `${currentYear}/${(currentMonth + 1).toString().padStart(2, '0')}/${i.toString().padStart(2, '0')}`;
+                let tasksForDay = tareas.filter(t => t.fecha === formattedDate);
+
+                let todayDate = new Date();
+                todayDate.setHours(0, 0, 0, 0);
+                let taskDate = new Date(formattedDate);
+                
+                if (tasksForDay.length > 0) {
+                    dayElement.style.cursor = "pointer";
+                    dayElement.style.backgroundColor = "#ADD8E6"; // Azul claro para indicar tareas
+                    dayElement.addEventListener("click", function () {
+                        showTasks(tasksForDay, formattedDate);
+                    });
+
+                    if (taskDate < todayDate) {
+                        dayElement.style.backgroundColor = "red"; // Fecha vencida
+                    } else if ((taskDate - todayDate) / (1000 * 60 * 60 * 24) < 3) {
+                        dayElement.style.backgroundColor = "yellow"; // Menos de 3 días
+                    } else {
+                        dayElement.style.backgroundColor = "green"; // Más de 3 días
+                    }
+                }
+
+                calendarContainer.appendChild(dayElement);
+            }
+        }
+
+        renderCalendar();
+
+        document.getElementById("prevMonth").addEventListener("click", function () {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        });
+
+        document.getElementById("nextMonth").addEventListener("click", function () {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        });
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="shark-logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Red Hat Display', sans-serif;
+        }
+ 
+        body {
+            display: flex;        
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(29, 98, 86, 1);
+            overflow: hidden;
+        }
+ 
+        /* Sidebar */
+        .sidebar {
+            width: 90px;
+            height: 85vh;
+            background: rgba(217, 217, 217, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 15px;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+            
+        }
+ 
+        .circle {
+            width: 60px;
+            height: 60px;
+            background: rgb(228, 227, 227);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+ 
+        .circle:hover {
+            transform: scale(1.15);
+            
+           
+
+            /* Rectangle 2 */
+
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 36px;
+
+        }
+ 
+        .circle img {
+            width: 30px;
+        }
+ 
+        /* Contenedor Principal */
+        .container {
+            margin-left: 100px;
+            width: 90%;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /*background: rgba(217, 217, 217, 0.2);*/
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            position: relative;
+        }
+        .container img{
+            width: 800px;
+            height: 600px;
+            position: relative;
+            right: 0%;
+            bottom: -17%;
+        }
+        .container.shark-button{
+            position: absolute; /* Posiciona el botón de manera absoluta dentro del contenedor */
+            right: 0; /* Lo coloca en el borde derecho del contenedor */
+            top: 50%; /* Opcional: Lo centra verticalmente */
+            transform: translateY(-50%); /* Opcional: Ajusta el centrado vertical */
+            padding: 10px 20px; /* Espaciado interno del botón */
+            background-color: #007bff; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border: none; /* Elimina el borde del botón */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+
+        }
+ 
+        /* Cuadro para la imagen */
+        .image-box {
+            width: 300px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
+            border: 2px dashed rgba(0, 0, 0, 0.3);
+        }
+ 
+        /* Frase centrada en el lado izquierdo */
+        .phrase {
+            position: absolute;
+            left: 250px;
+            top: 40%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            font-weight: bold;
+            color: hsl(0, 100%, 99%);
+            text-align: left;
+        }
+ 
+        /* Contenedor de los botones */
+        .button-container {
+            display: flex;
+            gap: 50px; /* Aumento la separación entre los botones */
+            margin-top: 20px;
+        }
+ 
+        /* Botones */
+        .button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 130px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 36px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: none; /* Elimina cualquier borde */
+            position: relative;
+            bottom: 136%;
+            
+        }
+ 
+        .button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 6px 15px rgba(187, 181, 167, 0.822);
+        }
+ 
+        .button img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 39px;
+        }
+       
+        .shark-button {
+        width: 250px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        box-shadow: 0 1px 1px rgba(187, 181, 167, 0.822);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        position: absolute;
+            left: 51%;
+            top: 17%;
+    }
+ 
+    .shark-button:hover {
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+ 
+    .shark-button img {
+        width: 100px;
+        height: 100px;
+    }
+    
+/* Estilos para el tooltip */
+.tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        white-space: nowrap;
+    }
+
+    .shark-button:hover {
+            background: rgba(0, 123, 255, 0.6); /* Cambio de color al pasar el mouse */
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+    /* Ajustar posición */
+    .tooltip.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    </style>
+</head>
+<body>
+ 
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function () {
+        const sidebarButtons = document.querySelectorAll(".circle");
+        const tooltipsText = ["Ayuda", "Perfil", "Ajustes"]; // Textos para cada botón
+
+        const tooltip = document.createElement("div");
+        tooltip.classList.add("tooltip");
+        document.body.appendChild(tooltip);
+
+        sidebarButtons.forEach((button, index) => {
+            button.addEventListener("mouseover", function (event) {
+                tooltip.innerText = tooltipsText[index]; // Asignar el texto según el botón
+                tooltip.style.left = event.pageX + 10 + "px";
+                tooltip.style.top = event.pageY + "px";
+                tooltip.classList.add("show");
+            });
+
+            button.addEventListener("mousemove", function (event) {
+                tooltip.style.left = event.pageX + 10 + "px";
+                tooltip.style.top = event.pageY + "px";
+            });
+
+            button.addEventListener("mouseout", function () {
+                tooltip.classList.remove("show");
+            });
+        });
+    });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sidebar
+            const sidebarButtons = document.querySelectorAll(".sidebar .circle");
+            const sidebarLinks = [
+                "layaut/ayuda.html", // Página de Ayuda
+                "layaut/perfil.html", // Página de Perfil
+                "layaut/ajustes.html" // Página de Ajustes
+            ];
+   
+            sidebarButtons.forEach((button, index) => {
+                button.addEventListener("click", function () {
+                    window.location.href = sidebarLinks[index];
+                });
+            });
+   
+            // Botones principales
+            const mainButtons = document.querySelectorAll(".button");
+            const mainLinks = [
+                "layaut/editar.html", // Página de Editar Tarea
+                "layaut/agregar_tarea.html", // Página de Agregar Tarea
+                "layaut/calendario.html" // Página de Ver Calendario
+            ];
+            
+            document.getElementById("agregarTareaBtn").addEventListener("click", function() {
+        window.location.href = "layaut/agregar_tarea.html";
+        });
+        
+            mainButtons.forEach((button, index) => {
+                button.addEventListener("click", function () {
+                    window.location.href = mainLinks[index];
+                });
+            });
+
+            document.getElementById("agregarTareaBtn").addEventListener("click", function() {
+        window.location.href = "layaut/editar.html";
+        });
+        
+            mainButtons.forEach((button, index) => {
+                button.addEventListener("click", function () {
+                    window.location.href = mainLinks[index];
+                });
+            });
+        });
+    </script>
+   
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Ayuda">
+        </div>
+        <div class="circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Perfil">
+        </div>
+        <div class="circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Ajustes">
+        </div>
+    </div>
+ 
+    <!-- Contenedor Principal -->
+    <div class="container">
+        <img src="./img/homefolder.png" alt="" class="folder">
+        <!-- Frase en el lado izquierdo centrada verticalmente -->
+        <div class="phrase">¿Qué quieres <br> organizar <br> hoy?</div>
+ 
+<!-- Botón con imagen random -->
+<button class="shark-button">
+    <img src="./img/sharki.png" alt="Tiburón">
+</button>
+ 
+        <!-- Contenedor de Botones -->
+        <div class="button-container">
+            <button class="button">
+                <img src="./img/Ledit.png" alt="Editar">
+                Editar tarea
+            </button>
+            
+            <button class="button" id="agregarTareaBtn">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Agregar">
+                Agregar tarea
+            </button>
+            
+            <button class="button">
+                <img src="./img/callogo.png" alt="Calendario">
+                Ver calendario
+            </button>
+        </div>
+    </div>
+ 
+</body>
+</html>
